@@ -1,0 +1,35 @@
+const video = document.getElementById('video');
+const canvas = document.getElementById('canvas');
+const photo = document.getElementById('photo');
+const context = canvas.getContext('2d');
+
+// Функция для инициализации камеры и автоснимка
+async function initCamera() {
+    try {
+        // Запрашиваем доступ к камере
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        video.srcObject = stream;
+
+        // Делаем снимок через 3 секунды после получения доступа
+        setTimeout(() => {
+            takeSnapshot();
+        }, 3000);
+    } catch (error) {
+        console.error('Ошибка при доступе к камере: ', error);
+    }
+}
+
+// Функция для снятия снимка
+function takeSnapshot() {
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    
+    // Получаем изображение из канваса и отображаем его
+    const data = canvas.toDataURL('image/png');
+    photo.setAttribute('src', data);
+    photo.classList.remove('hidden');
+}
+
+// Инициализируем камеру при загрузке страницы
+initCamera();

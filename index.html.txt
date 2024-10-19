@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автофотография</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Запрос на доступ к камере</h1>
+        <video id="video" autoplay></video>
+        <canvas id="canvas" class="hidden"></canvas>
+        <img id="photo" class="hidden" alt="Снимок">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
